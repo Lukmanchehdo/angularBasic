@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             StudentSeeder::class,
         ]);
-        \App\Models\Student::factory(100)->create();
+        \App\Models\Student::factory(50)->create();
     }
 }
