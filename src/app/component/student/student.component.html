@@ -1,0 +1,21 @@
+<h2 class="display-6 text-center mb-4">student works!</h2>
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let student of students">
+                <th scope="row">1</th>
+                <td>{{ student.name }}</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
