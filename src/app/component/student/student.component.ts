@@ -39,12 +39,29 @@ export class StudentComponent implements OnInit {
   }
 
   saveStudent() {
-    this.http.post(this.shareService.serverPath + '/student/save', this.student).subscribe((res: any) => {
+    if(this.student.id == null){
+      var path = this.shareService.serverPath + '/student/save';
+    }else{
+      var path = this.shareService.serverPath + '/student/update';
+    }
+
+    this.http.post(path, this.student).subscribe((res: any) => {
       this.students = res.student
       alert(res.message)
       this.loade();
       // console.log(this.students);
     });
+  }
+
+  deleteStudent(item:any) {
+    if(confirm("Are you sure to delete ")) {
+    this.http.post(this.shareService.serverPath + '/student/delete', item).subscribe((res: any) => {
+      this.students = res.student
+      alert(res.message)
+      this.loade();
+      // console.log(this.students);
+    });
+  }
   }
 
 }
