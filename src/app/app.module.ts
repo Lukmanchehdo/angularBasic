@@ -9,12 +9,14 @@ import { FormsModule } from '@angular/forms';
 import { ShareService } from './ShareService';
 
 import { StudentComponent } from './component/student/student.component';
+import { ClassComponent } from './component/class/class.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    StudentComponent
+    StudentComponent,
+    ClassComponent
   ],
   imports: [
     BrowserModule,

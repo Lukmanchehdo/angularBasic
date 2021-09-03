@@ -44,7 +44,7 @@ class StudentController extends Controller
     {
 
         // dd($request);
-        $student = Student::findOrFail($request->id);
+        $student = Student::find($request->id);
 
         $student->name = $request->name;
         $student->email = $request->email;
