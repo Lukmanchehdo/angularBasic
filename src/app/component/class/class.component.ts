@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ShareService } from '../../ShareService';
 
 @Component({
   selector: 'app-class',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClassComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: HttpClient, private shareService: ShareService) { }
 
   ngOnInit(): void {
   }

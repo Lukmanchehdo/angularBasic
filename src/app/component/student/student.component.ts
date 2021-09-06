@@ -48,6 +48,15 @@ export class StudentComponent implements OnInit {
     this.http.post(path, this.student).subscribe((res: any) => {
       this.students = res.student
       alert(res.message)
+      this.student = {
+        id: null,
+        name: null,
+        email: null,
+        mobile: null,
+        age: null,
+        gender: null,
+        address_info: null
+      };
       this.loade();
       // console.log(this.students);
     });
