@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\ClassController;
 use App\Http\Controllers\api\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,3 +24,6 @@ Route::get('/student', [StudentController::class, 'index']);
 Route::post('/student/save', [StudentController::class, 'save']);
 Route::post('/student/update', [StudentController::class, 'update']);
 Route::post('/student/delete', [StudentController::class, 'delete']);
+
+Route::get('/class', [ClassController::class, 'index']);
+Route::post('/class/save', [ClassController::class, 'save']);

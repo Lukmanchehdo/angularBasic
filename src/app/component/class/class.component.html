@@ -15,19 +15,19 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr *ngFor="let item of classs ; let i = index">
                 <th scope="row" class="text-center">
-                    <a class="btn btn-sm btn-danger">
+                    <a class="btn btn-sm btn-danger" (click)="deleteClass(item)">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                     </a>
                     &nbsp;
-                    <a class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <a class="btn btn-sm btn-primary" data-bs-toggle="modal" (click)="editClass(item)" data-bs-target="#staticBackdrop">
                         <i class="fa fa-edit" aria-hidden="true"></i>
                     </a>
                 </th>
-                <td class="text-center">1</td>
-                <td></td>
-                <td></td>
+                <td class="text-center">{{ i+1 }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.level }}</td>
             </tr>
         </tbody>
     </table>
@@ -47,7 +47,7 @@
                     <div class="col-md-12">
                         <div class="form-group mb-3">
                             <label for="name">ชั้น</label>
-                            <input type="text" class="form-control" name="student.name" />
+                            <input type="text" class="form-control" name="class.name" [(ngModel)]="class.name" />
                         </div>
                     </div>
                 </div>
@@ -55,10 +55,10 @@
                     <div class="col-md-12">
                         <div class="form-group mb-3">
                             <label for="level">ระดับชั้น</label>
-                            <select class="form-select form-control" name="student.level" aria-label="Default select example">
+                            <select class="form-select form-control" name="class.level" [(ngModel)]="class.level" aria-label="Default select example">
                               <option>select</option>
-                              <option value="primary">ประถมศึกษา</option>
-                              <option value="secondary">มัธยมศึกษา</option>
+                              <option value="ประถมศึกษา">ประถมศึกษา</option>
+                              <option value="มัธยมศึกษา">มัธยมศึกษา</option>
                             </select>
                         </div>
                     </div>
@@ -66,8 +66,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ออก</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="fa fa-check"
-            aria-hidden="true"></i> บันทึก</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="saveClass()"><i class="fa fa-check" aria-hidden="true"></i> บันทึก</button>
             </div>
         </div>
     </div>
