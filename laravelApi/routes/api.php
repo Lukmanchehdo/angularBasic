@@ -27,3 +27,5 @@ Route::post('/student/delete', [StudentController::class, 'delete']);
 
 Route::get('/class', [ClassController::class, 'index']);
 Route::post('/class/save', [ClassController::class, 'save']);
+Route::post('/class/update', [ClassController::class, 'update']);
+Route::delete('/class/delete/{id}', [ClassController::class, 'delete']);

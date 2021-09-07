@@ -26,7 +26,7 @@ export class ClassComponent implements OnInit {
   loadeClass() {
     this.http.get(this.shareService.serverPath + '/class').subscribe((res: any) => {
       this.classs = res.class
-      console.log(this.classs);
+      //console.log(this.classs);
     })
   }
 
@@ -34,7 +34,7 @@ export class ClassComponent implements OnInit {
     if(this.class.id == null){
       var path = this.shareService.serverPath + '/class/save';
     }else{
-      console.log(this.class);
+      //console.log(this.class);
       var path = this.shareService.serverPath + '/class/update';
     }
 
@@ -47,7 +47,7 @@ export class ClassComponent implements OnInit {
         level: null
       };
       this.loadeClass();
-      // console.log(this.students);
+      // console.log(this.classs);
     });
   }
 
@@ -56,7 +56,13 @@ export class ClassComponent implements OnInit {
   }
 
   deleteClass(item: any) {
-
+    if(confirm("Are you sure to delete ")) {
+      this.http.delete(this.shareService.serverPath + '/class/delete/' + item.id).subscribe((res: any) =>{
+        this.classs = res.class
+        alert(res.message)
+        this.loadeClass();
+      })
+    }
   }
 
 }

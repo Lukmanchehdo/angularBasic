@@ -34,4 +34,34 @@ class ClassController extends Controller
         ]);
 
     }
+
+    public function update(Request $request)
+    {
+
+        // dd($request);
+        $class = clas::find($request->id);
+
+        $class->name = $request->name;
+        $class->level = $request->level;
+
+        $class->save();
+
+        return response()->json([
+            'class_data' => $class,
+            'message' => 'Data Update Successfully',
+        ]);
+
+    }
+
+    public function delete($id)
+    {
+
+        $class = clas::find($id)->delete();
+
+        return response()->json([
+            'class_data' => $class,
+            'message' => 'Data Delete Successfully',
+        ]);
+
+    }
 }

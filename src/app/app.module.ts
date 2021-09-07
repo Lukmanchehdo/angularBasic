@@ -10,13 +10,15 @@ import { ShareService } from './ShareService';
 
 import { StudentComponent } from './component/student/student.component';
 import { ClassComponent } from './component/class/class.component';
+import { ClassroomComponent } from './component/classroom/classroom.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     StudentComponent,
-    ClassComponent
+    ClassComponent,
+    ClassroomComponent
   ],
   imports: [
     BrowserModule,
