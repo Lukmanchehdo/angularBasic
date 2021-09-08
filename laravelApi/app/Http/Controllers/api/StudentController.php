@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -73,5 +74,26 @@ class StudentController extends Controller
             'message' => 'Data Delete Successfully',
         ]);
 
+    }
+
+    public function student()
+    {
+        $data = [];
+
+        $condition = DB::table('classrooms')->select('classrooms.*')->get();
+
+        foreach ($condition as $conditions) {
+            $data[] = [
+                $conditions->student_id,
+            ];
+
+        }
+
+        $student = Student::orderBy('id', 'ASC')->whereNotIn('id', $data)->get();
+
+        return response()->json([
+            'student' => $student,
+            'status' => 'OK',
+        ]);
     }
 }

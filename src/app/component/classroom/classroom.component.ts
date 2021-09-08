@@ -11,6 +11,7 @@ export class ClassroomComponent implements OnInit {
 
   classs: any;
   students: any;
+  classrooms: any;
 
   classroom = {
     id: null,
@@ -23,6 +24,8 @@ export class ClassroomComponent implements OnInit {
   ngOnInit(): void {
     this.loadeClass();
     this.loadeStudent();
+
+    this.loadeClassroom();
   }
 
   loadeClass() {
@@ -33,13 +36,45 @@ export class ClassroomComponent implements OnInit {
   }
 
   loadeStudent() {
-    this.http.get(this.shareService.serverPath + '/student').subscribe((res: any) => {
+    this.http.get(this.shareService.serverPath + '/studentClassroom').subscribe((res: any) => {
       this.students = res.student
       // console.log(this.students);
     });
   }
 
   saveClassroom() {
-    console.log(this.classroom);
+    //console.log(this.classroom);
+    this.http.post(this.shareService.serverPath + '/classroom/save', this.classroom).subscribe((res: any) => {
+      this.classrooms = res;
+      alert(res.message);
+      this.classroom = {
+        id: null,
+        class_id : null,
+        student_id : null,
+      };
+      this.refresh();
+      this.loadeClassroom();
+    });
+  }
+
+  loadeClassroom() {
+    this.http.get(this.shareService.serverPath + '/classroom').subscribe((res: any) => {
+      this.classrooms = res
+    });
+
+  }
+
+  deleteStudent(student:any) {
+    if(confirm("Are you sure to delete ")) {
+      this.http.delete(this.shareService.serverPath + '/classroom/delete/' + student.id).subscribe((res: any) =>{
+        this.classrooms = res
+        alert(res.class_data)
+        this.loadeClassroom();
+      })
+    }
+  }
+
+  refresh(): void {
+    window.location.reload();
   }
 }
