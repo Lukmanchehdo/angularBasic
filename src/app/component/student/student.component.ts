@@ -9,7 +9,17 @@ import { ShareService } from '../../ShareService';
 })
 export class StudentComponent implements OnInit {
 
+  dtOptions: DataTables.Settings = {};
+
   students: any;
+
+  age!: number;
+  email!: string;
+
+  user = {
+    age: null,
+    email: null,
+  }
 
   student = {
     id: null,
@@ -25,6 +35,9 @@ export class StudentComponent implements OnInit {
 
   ngOnInit(): void {
     this.loade();
+    this.dtOptions = {
+      pagingType: 'full_numbers'
+    };
   }
 
   loade() {
@@ -71,6 +84,25 @@ export class StudentComponent implements OnInit {
       // console.log(this.students);
     });
   }
+  }
+
+  loginTest() {
+    this.http.get(this.shareService.serverPath + '/student').subscribe((res: any) => {
+      this.students = res.student
+
+      // const obj = Object.assign({}, res.student);
+      // console.log(obj);
+      // this.age = obj.age;
+      // this.email = obj.email;
+
+      //console.log(this.email);
+
+      if("1234" == this.user.age && "Admin" == this.user.email) {
+        console.log("มีบัญชีผู้ใช้");
+      }
+      // console.log(this.students);
+    });
+    //console.log(this.user);
   }
 
 }
