@@ -38,7 +38,7 @@ class ClassroomController extends Controller
         foreach ($classrooms as $classroom) {
             $data[] = [
                 'classroom_data' => $classroom->class_name,
-                'student_data' => DB::table('students')->join('classrooms', 'classrooms.student_id', 'students.id')->where('classrooms.class_id', $classroom->class_id)->get(),
+                'student_data' => DB::table('students')->join('classrooms', 'classrooms.student_id', 'students.id')->select('students.*')->where('classrooms.class_id', $classroom->class_id)->get(),
             ];
 
         }
@@ -48,10 +48,12 @@ class ClassroomController extends Controller
 
     public function delete($id)
     {
-        $classroom = DB::table('classrooms')->where('student_id', '=', $id)->delete();
+        //dd($id);
+
+        $classroom = Classroom::where('student_id', $id)->delete();
 
         return response()->json([
-            'class_data' => $id,
+            'data' => $classroom,
             'message' => 'Data Delete Successfully',
         ]);
 

@@ -52,14 +52,18 @@ export class ClassroomComponent implements OnInit {
         class_id : null,
         student_id : null,
       };
-      this.refresh();
+      //this.refresh();
+
       this.loadeClassroom();
+      this.loadeStudent();
     });
   }
 
   loadeClassroom() {
     this.http.get(this.shareService.serverPath + '/classroom').subscribe((res: any) => {
       this.classrooms = res
+
+      //console.log(this.classrooms);
     });
 
   }
@@ -68,7 +72,7 @@ export class ClassroomComponent implements OnInit {
     if(confirm("Are you sure to delete ")) {
       this.http.delete(this.shareService.serverPath + '/classroom/delete/' + student.id).subscribe((res: any) =>{
         this.classrooms = res
-        alert(res.class_data)
+        alert(res.message);
         this.loadeClassroom();
       })
     }
